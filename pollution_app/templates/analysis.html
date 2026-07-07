@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+    <h2>Visual Analytics Engine</h2>
+    <a href="{% url 'analysis' %}" class="btn" style="background-color: var(--dark);">⟳ Regenerate Plots</a>
+</div>
+
+<div class="grid-cards">
+    <div class="card">
+        <h3 class="text-center">Pollution Trend Over Time</h3>
+        <img src="{% static 'images/trend.png' %}" alt="Trend Chart" style="width:100%; height:auto; border-radius:8px;">
+    </div>
+    
+    <div class="card">
+        <h3 class="text-center">Average Pollution by Location</h3>
+        <img src="{% static 'images/location_bar.png' %}" alt="Bar Chart" style="width:100%; height:auto; border-radius:8px;">
+    </div>
+</div>
+
+<div class="grid-cards">
+    <div class="card">
+        <h3 class="text-center">Pollution Status Distribution</h3>
+        <img src="{% static 'images/status_pie.png' %}" alt="Pie Chart" style="width:100%; height:auto; border-radius:8px;">
+    </div>
+    
+    <div class="card">
+        <h3 class="text-center">Temperature vs. Pollution Correlation</h3>
+        <img src="{% static 'images/scatter.png' %}" alt="Scatter Plot" style="width:100%; height:auto; border-radius:8px;">
+    </div>
+</div>
+{% endblock %}

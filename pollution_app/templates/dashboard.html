@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card" style="background: linear-gradient(135deg, var(--dark), #1e293b); color: white;">
+    <h1 style="margin:0 0 0.5rem 0; font-size:2rem;">Dashboard Overview</h1>
+    <p style="color: #cbd5e1; margin:0;">Marine Pollution Monitoring Operations Center</p>
+</div>
+
+<div class="grid-cards">
+    <div class="card stat-card" style="border-left-color: var(--primary);">
+        <h3>Total Records</h3>
+        <p>{{ total_records }}</p>
+    </div>
+    <div class="card stat-card" style="border-left-color: var(--warning);">
+        <h3>Avg Pollution Level</h3>
+        <p>{{ avg_pollution }}</p>
+    </div>
+    <div class="card stat-card" style="border-left-color: var(--danger);">
+        <h3>Max Pollution (Peak)</h3>
+        <p>{{ max_p }}</p>
+    </div>
+    <div class="card stat-card" style="border-left-color: var(--success);">
+        <h3>Standard Dev (Volatility)</h3>
+        <p>{{ std_dev }}</p>
+    </div>
+</div>
+
+<div class="grid-cards">
+    <div class="card">
+        <h2 style="margin-top:0;">CRITICAL: Highly Polluted Regions</h2>
+        <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">Based on dynamic rule-engine alerts</p>
+        
+        {% if highly_polluted %}
+            <ul class="polluted-list">
+            {% for loc, count in highly_polluted %}
+                <li>
+                    <strong>{{ loc }}</strong>
+                    <span class="badge badge-high">{{ count }} High Alerts</span>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p style="color:var(--success);">✅ No actively highly polluted regions detected.</p>
+        {% endif %}
+    </div>
+    
+    <div class="card">
+        <h2 style="margin-top:0;">Quick Actions</h2>
+        <div style="display:flex; flex-direction:column; gap:1rem;">
+            <a href="{% url 'analysis' %}" class="btn" style="background-color: var(--secondary); text-align:center;">Generate Visual Matrix</a>
+            <a href="{% url 'report' %}" class="btn" style="background-color: var(--dark); text-align:center;">Query Database</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
